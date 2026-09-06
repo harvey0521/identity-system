@@ -30,7 +30,7 @@ console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 
 
-app = Flask(__name__, static_folder="static")
+app = Flask(__name__)
 
 
 def function():
@@ -39,19 +39,6 @@ def function():
 
 conn = function()
 print(conn)  # None
-
-
-# 連 html
-@app.route("/")
-def index():
-    return send_from_directory("static", "index.html")
-
-
-# 連 static 其他檔案 css js
-@app.route("/<path:filename>")
-def static_files(filename):
-    return send_from_directory("static", filename)
-
 
 # 取所有資料
 @app.route("/api/users", methods=["GET"])
