@@ -2,6 +2,9 @@
 import { ref, reactive } from 'vue';
 import DataTable from 'datatables.net-vue3'
 
+// Vite 會在 build 時自動判定要帶入哪一個網址
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
 const idInput = ref("");
 const nameInput = ref("");
 const phoneInput = ref("");
@@ -225,7 +228,7 @@ function checkId(id) {
 
 //取得 顯示資料
 async function loadList(highlightId = null, animation = false) {
-  const res = await fetch("/api/users", { method: "GET" }); //後端請求資料
+  const res = await fetch(`${API_BASE}/api/users`, { method: "GET" }); //後端請求資料
   const result = await res.json(); //轉 js 陣列
   resultget.push(...result.data)  //... 把原本的陣列資料一個一個重新插入 resultget 的陣列裡
   console.log('resultget :>> ', resultget);
@@ -250,7 +253,7 @@ async function get() {
     return;
   }
 
-  const res = await fetch(`/api/users/${id}`, { method: "GET" });
+  const res = await fetch(`${API_BASE}/api/users/${id}`, { method: "GET" });
   const result = await res.json();
 
   if (handleApiFailure(result)) {
@@ -273,7 +276,7 @@ async function post() {
 
   const data = getListData();
 
-  const res = await fetch("/api/users", {
+  const res = await fetch(`${API_BASE}/api/users`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -309,7 +312,7 @@ async function put() {
     return;
   }
 
-  const res = await fetch(`/api/users/${id}`, {
+  const res = await fetch(`${API_BASE}/api/users/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -339,7 +342,7 @@ async function idDelete() {
     return;
   }
 
-  const res = await fetch(`/api/users/${id}`, { method: "DELETE" });
+  const res = await fetch(`${API_BASE}/api/users/${id}`, { method: "DELETE" });
   const result = await res.json();
 
   if (handleApiFailure(result)) {
