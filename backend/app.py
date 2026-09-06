@@ -34,6 +34,8 @@ logger.addHandler(console_handler)
 app = Flask(__name__)
 CORS(app, origins=[
     "http://localhost:5173",            # Vite 預設本機網址
+    "http://127.0.0.1:5173",
+    "https://harvey0521.github.io"
 ])
 
 def function():
