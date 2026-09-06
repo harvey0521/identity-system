@@ -1,5 +1,4 @@
 import os
-import mysql.connector
 from mysql.connector import pooling
 from dotenv import load_dotenv
 
@@ -11,13 +10,13 @@ def get_env(target):
 
 db_pool = pooling.MySQLConnectionPool(
     pool_name="tidb_pool",
-    pool_size=3,                           # 免費方案開 2~3 個連線即可
+    pool_size=3,                           # 最多 3 條連線
     pool_reset_session=True,
-    host=get_env("DB_HOST"),    # 主機位置，如果你用本地的 MySQL 就是 localhost
-    user=get_env("DB_USER"),    # 你的 MySQL 帳號
-    password=get_env("DB_PASSWORD"),    # 你的 MySQL 密碼
-    database=get_env("DB_NAME"),    # 你的資料庫名稱
-    charset=get_env("DB_CHAR")  # 避免中文亂碼
+    host=get_env("DB_HOST"),
+    user=get_env("DB_USER"),
+    password=get_env("DB_PASSWORD"),
+    database=get_env("DB_NAME"),
+    charset=get_env("DB_CHAR")
 )
 
 def get_db():
