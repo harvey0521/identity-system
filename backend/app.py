@@ -45,6 +45,11 @@ def function():
 conn = function()
 print(conn)  # None
 
+# UptimeRobot 設定定時 GET 請求
+@app.route("/ping", methods=["GET"])
+def ping():
+    return "pong", 200
+
 # 取所有資料
 @app.route("/api/users", methods=["GET"])
 def get_all():
