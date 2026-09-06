@@ -1,4 +1,5 @@
 from flask import Flask, request, send_from_directory
+from flask_cors import CORS
 from response import response
 from Dao import get_all_dao, get_dao, post_dao, put_dao, delete_dao, has_id_dao
 import os
@@ -31,7 +32,9 @@ logger.addHandler(console_handler)
 
 
 app = Flask(__name__)
-
+CORS(app, origins=[
+    "http://localhost:5173",            # Vite 預設本機網址
+])
 
 def function():
     pass
