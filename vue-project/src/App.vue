@@ -66,7 +66,7 @@ const columns = [
 const options = {
   order: [],      //不排序
   language: {
-    url: '/zh-HANT.json',
+    url: `${import.meta.env.BASE_URL}zh-HANT.json`,
   },
   createdRow: function (tr, data, dataIndex) {
     if (data.id === highlightId.value) {
